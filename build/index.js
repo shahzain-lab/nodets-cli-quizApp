@@ -10,6 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import chalk from "chalk";
 import inquirer from "inquirer";
 import { Model } from "./Model.js";
+import figlet from 'figlet';
+import gradient from 'gradient-string';
 // https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple
 class App {
     constructor(model) {
@@ -74,11 +76,11 @@ class App {
                         },
                         {
                             value: 'medium',
-                            name: chalk.yellow.bold('medium')
+                            name: chalk.green.bold('medium')
                         },
                         {
                             value: 'hard',
-                            name: chalk.magenta.bold('hard')
+                            name: chalk.green.bold('hard')
                         }
                     ]
                 }
@@ -142,5 +144,15 @@ class App {
     }
 }
 ;
-const app = new App(new Model);
-app.init();
+figlet.text('Triple-Quiz!', {
+    horizontalLayout: 'default',
+    verticalLayout: 'default',
+    width: 120,
+    whitespaceBreak: true
+}, ((err, data) => {
+    console.log('\n');
+    console.log(gradient.rainbow(data));
+    console.log('\n');
+    const app = new App(new Model);
+    app.init();
+}));
